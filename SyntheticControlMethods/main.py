@@ -223,7 +223,7 @@ class DataProcessor(object):
         treated_outcome_all = np.array(treated_data_all[outcome_var]).reshape(periods_all,1) #All outcomes
         
         #Only pre-treatment
-        treated_data = treated_data_all.loc[dataset[time_var] < treatment_period]
+        treated_data = treated_data_all.loc[treated_data_all[time_var] < treatment_period]
         #Extract outcome and shape as matrix
         treated_outcome = np.array(treated_data[outcome_var]).reshape(periods_pre_treatment, 1)
         #Columnwise mean of each covariate in pre-treatment period for treated unit, shape as matrix
@@ -243,7 +243,7 @@ class DataProcessor(object):
         control_outcome_all = np.array(control_data_all[outcome_var]).reshape(n_controls, periods_all).T #All outcomes
         
         #Only pre-treatment
-        control_data = control_data_all.loc[dataset[time_var] < treatment_period]
+        control_data = control_data_all.loc[control_data_all[time_var] < treatment_period]
         #Extract outcome, then shape as matrix
         control_outcome = np.array(control_data[outcome_var]).reshape(n_controls, periods_pre_treatment).T
         
